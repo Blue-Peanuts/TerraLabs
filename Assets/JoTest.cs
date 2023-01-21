@@ -11,6 +11,12 @@ public class JoTest : MonoBehaviour
     void Start()
     {
         //blob1.Give(5, blob2);
+        Gene gene = new Gene();
+        gene.Randomize();
+        print(gene.Value);
+        gene.Mutate();
+        print(gene.Value);
+        
     }
 
     // Update is called once per frame
