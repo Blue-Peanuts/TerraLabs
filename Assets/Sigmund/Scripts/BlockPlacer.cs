@@ -10,24 +10,27 @@ public class BlockPlacer : MonoBehaviour
     void Update()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); // get world position
-        float Xfloored = Mathf.Floor(mousePosition.x);
-        float Yfloored = Mathf.Floor(mousePosition.y);
-        Vector3 snappedPosition = new Vector3(Xfloored + 0.5f, Yfloored + 0.5f, 0);
+        float xFloored = Mathf.Floor(mousePosition.x);
+        float yFloored = Mathf.Floor(mousePosition.y);
+        Vector3 snappedPosition = new Vector3(xFloored + 0.5f, yFloored + 0.5f, 0);
 
-        GameObject[] Prefabs = GameObject.FindGameObjectsWithTag("Tiles");
-        if (Input.GetMouseButton(0))
+        if (Utility.IsButtonPushedOnNonUI(KeyCode.Mouse0))
         {
-            for (int i=0; i<Prefabs.Length; ++i)
+            GameObject nearestObject = Utility.FindNearestTaggedObject("Tiles", snappedPosition, 1f);
+            if(nearestObject != null)
             {
-                if (Prefabs[i].transform.position == snappedPosition) Destroy(Prefabs[i]); // destroy overlapping
+                // destroy overlapping
+                Destroy(nearestObject);
             }
             Instantiate(tilePrefabs[selectedTile], snappedPosition, Quaternion.identity);
         }
-        if (Input.GetMouseButtonDown(1))
+        if (Utility.IsButtonPushedOnNonUI(KeyCode.Mouse0))
         {
-            for (int i = 0; i < Prefabs.Length; ++i)
+            GameObject nearestObject = Utility.FindNearestTaggedObject("Tiles", snappedPosition, 1f);
+            if(nearestObject != null)
             {
-                if (Prefabs[i].transform.position == snappedPosition) Destroy(Prefabs[i]); // destroy overlapping
+                // destroy overlapping
+                Destroy(nearestObject);
             }
         }
     }
