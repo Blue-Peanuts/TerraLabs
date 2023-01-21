@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Energy : MonoBehaviour
 {
-    public int energyLevel;
-    public int maxLevel;
+    public int energyLevel = 70;
+    public int maxLevel = 100;
 
     public void Drain(int drainAmt, Energy target)
     {
