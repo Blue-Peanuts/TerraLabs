@@ -6,10 +6,16 @@ public class BlockPlacer : MonoBehaviour
 {
     public GameObject[] tilePrefabs; // the prefabs of selected tile
     public int selectedTile = 1; // which tile are you currently using
+    private Camera _camera;
+
+    private void Awake()
+    {
+        _camera = Camera.main;
+    }
 
     void Update()
     {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); // get world position
+        Vector3 mousePosition = _camera.ScreenToWorldPoint(Input.mousePosition); // get world position
         float xFloored = Mathf.Floor(mousePosition.x);
         float yFloored = Mathf.Floor(mousePosition.y);
         Vector3 snappedPosition = new Vector3(xFloored + 0.5f, yFloored + 0.5f, 0);
