@@ -7,10 +7,15 @@ public class WorldSpawener : MonoBehaviour
     void Start()
     {
         BlockPlacer blockPlacer = FindObjectOfType<BlockPlacer>(); 
-        for (int i = -30; i <= 30; i++) for (int j = -15; j <= 15; j++)
+        for (int i = -30; i <= 30; i++) for (int j = -30; j <= 30; j++)
         {
             Vector3 snappedPosition = new Vector3(i + 0.5f, j + 0.5f, 0);
             Instantiate(blockPlacer.GetPrefabFromBlockType(BlockType.Water), snappedPosition, Quaternion.identity);
+        }
+        for (int i = -10; i <= 10; i++) for (int j = -10; j <= 10; j++)
+        {
+            Vector3 snappedPosition = new Vector3(i + 0.5f, j + 0.5f, 0);
+            Instantiate(blockPlacer.GetPrefabFromBlockType(BlockType.Plains), snappedPosition, Quaternion.identity);
         }
     }
 }

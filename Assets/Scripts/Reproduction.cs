@@ -21,7 +21,6 @@ public class Reproduction : MonoBehaviour
     {
         float xFloored = Mathf.Floor(transform.position.x);
         float yFloored = Mathf.Floor(transform.position.y);
-        //float distance = Vector3.Distance(transform.position, Egg.transform.position); // need to detect whether there are things in range, more than one eggs
         if (_energy.energyLevel >= Least2Born) //
         {
             LayEgg();
