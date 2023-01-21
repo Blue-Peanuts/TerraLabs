@@ -12,10 +12,5 @@ public class WorldSpawener : MonoBehaviour
             Vector3 snappedPosition = new Vector3(i + 0.5f, j + 0.5f, 0);
             Instantiate(blockPlacer.GetPrefabFromBlockType(BlockType.Water), snappedPosition, Quaternion.identity);
         }
-        for (int i = -10; i <= 10; i++) for (int j = -10; j <= 10; j++)
-        {
-            Vector3 snappedPosition = new Vector3(i + 0.5f, j + 0.5f, 0);
-            Instantiate(blockPlacer.GetPrefabFromBlockType(BlockType.Plains), snappedPosition, Quaternion.identity);
-        }
     }
 }
