@@ -47,6 +47,7 @@ public class BlockPlacer : MonoBehaviour
                 // destroy overlapping
                 Destroy(nearestObject);
             }
+            Instantiate(GetPrefabFromBlockType(0), snappedPosition, Quaternion.identity);
         }
     }
 
