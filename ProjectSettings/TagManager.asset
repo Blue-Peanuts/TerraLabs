@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tiles
   - Block
+  - Giblet
   layers:
   - Default
   - TransparentFX
