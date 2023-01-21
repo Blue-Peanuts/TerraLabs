@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4099153890432110127}
   - component: {fileID: 4099153890432110120}
   - component: {fileID: 4099153890432110121}
+  - component: {fileID: -7020767585546266309}
+  - component: {fileID: -8517907752908225581}
   m_Layer: 0
   m_Name: Giblet
   m_TagString: Giblet
@@ -123,3 +125,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-7020767585546266309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099153890432110125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c952d22f6f6b78943a8af72d824fbc9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8517907752908225581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099153890432110125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c736d4481b57fb64cb97fed302b0a57f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyLevel: 100
+  maxLevel: 100
