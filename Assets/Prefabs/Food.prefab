@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2765597559212751522}
   m_Layer: 0
   m_Name: Food
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,5 +149,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c736d4481b57fb64cb97fed302b0a57f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyLevel: 3
-  maxLevel: 3
+  energyLevel: 5
+  maxLevel: 5
