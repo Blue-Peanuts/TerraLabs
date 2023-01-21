@@ -65,23 +65,23 @@ public class Utility : MonoBehaviour
     {
         if (Input.GetKeyDown(keyCode))
         {
-            // Check if the mouse is over a UI element
-            if (EventSystem.current.IsPointerOverGameObject())
-            {
-                // Mouse is over a UI element
-                return false;
-            }
-            else
-            {
-                // Mouse is not over a UI element
-                return true;
-            }
+            // Return the reverse of if the eventSystem exists, or that your mouse is over an object
+            // This should ensure you don't run over a UI and can test without an event system in play
+            return !(EventSystem.current && EventSystem.current.IsPointerOverGameObject());
         }
-        else
+        // Mouse button is not clicked
+        return false;
+    }
+    public static bool IsButtonHeldOnNonUI(KeyCode keyCode)
+    {
+        if (Input.GetKey(keyCode))
         {
-            // Mouse button is not clicked
-            return false;
+            // Return the reverse of if the eventSystem exists, or that your mouse is over an object
+            // This should ensure you don't run over a UI and can test without an event system in play
+            return !(EventSystem.current && EventSystem.current.IsPointerOverGameObject());
         }
+        // Mouse button is not clicked
+        return false;
     }
 
 }

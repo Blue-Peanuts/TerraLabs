@@ -20,9 +20,10 @@ public class BlockPlacer : MonoBehaviour
         float yFloored = Mathf.Floor(mousePosition.y);
         Vector3 snappedPosition = new Vector3(xFloored + 0.5f, yFloored + 0.5f, 0);
 
-        if (Utility.IsButtonPushedOnNonUI(KeyCode.Mouse0))
+        if (Utility.IsButtonHeldOnNonUI(KeyCode.Mouse0))
         {
-            GameObject nearestObject = Utility.FindNearestTaggedObject("Tiles", snappedPosition, 1f);
+            GameObject nearestObject = Utility.FindNearestTaggedObject("Tiles", snappedPosition, 
+                0.1f);
             if(nearestObject != null)
             {
                 // destroy overlapping
@@ -30,9 +31,10 @@ public class BlockPlacer : MonoBehaviour
             }
             Instantiate(tilePrefabs[selectedTile], snappedPosition, Quaternion.identity);
         }
-        if (Utility.IsButtonPushedOnNonUI(KeyCode.Mouse0))
+        if (Utility.IsButtonHeldOnNonUI(KeyCode.Mouse1))
         {
-            GameObject nearestObject = Utility.FindNearestTaggedObject("Tiles", snappedPosition, 1f);
+            GameObject nearestObject = Utility.FindNearestTaggedObject("Tiles", snappedPosition, 
+                0.1f);
             if(nearestObject != null)
             {
                 // destroy overlapping
