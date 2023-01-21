@@ -5,28 +5,28 @@ using UnityEngine;
 public class FocusedGiblet : MonoBehaviour
 {
     public GameObject focusedGiblet;
-    public Genetics genetics;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Utility.IsButtonPushedOnNonUI(KeyCode.Mouse0))
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+            focusedGiblet = Utility.FindNearestTaggedObject("Giblet", mousePos, 0.1f);
 
-            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-
-            if (hit.collider != null)
-            {
-                genetics = hit.collider.GetComponent<Genetics>();
-            }
         }
+    }
+
+    public Genetics? GetGenetics()
+    {
+        if (focusedGiblet)
+            return focusedGiblet.GetComponent<GibletBlueprint>().genetics;
+        return null;
     }
 }
