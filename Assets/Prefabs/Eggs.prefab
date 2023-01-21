@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: -7020767585546266309}
   - component: {fileID: -8517907752908225581}
   m_Layer: 0
-  m_Name: Giblet
-  m_TagString: Giblet
+  m_Name: Eggs
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,9 +76,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: -2413806693520163455, guid: bfdf91a58b0408f47b7810241e936e9c, type: 3}
-  m_Color: {r: 0.8679245, g: 0.24973297, b: 0.24973297, a: 1}
+  m_Color: {r: 0.8584906, g: 0.79433775, b: 0.6924618, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,7 +98,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -149,5 +149,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c736d4481b57fb64cb97fed302b0a57f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyLevel: 100
+  energyLevel: 0
   maxLevel: 100
