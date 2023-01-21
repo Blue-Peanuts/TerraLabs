@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class BlockPlacer : MonoBehaviour
 {
-    public GameObject[] tilePrefabs; // the prefabs of selected tile
-    public int selectedTile = 1; // which tile are you currently using
+    [System.Serializable]
+    private struct BlockTypePrefabPair
+    {
+        public BlockType Type;
+        public GameObject Prefab;
+    }
+    
+    [SerializeField] private BlockTypePrefabPair[] blockPrefabs; // the prefabs of selected tile
+    public BlockType selectedBlock; // which tile are you currently using
     private Camera _camera;
 
     private void Awake()
@@ -22,18 +29,18 @@ public class BlockPlacer : MonoBehaviour
 
         if (Utility.IsButtonHeldOnNonUI(KeyCode.Mouse0))
         {
-            GameObject nearestObject = Utility.FindNearestTaggedObject("Tiles", snappedPosition, 
+            GameObject nearestObject = Utility.FindNearestTaggedObject("Block", snappedPosition, 
                 0.1f);
             if(nearestObject != null)
             {
                 // destroy overlapping
                 Destroy(nearestObject);
             }
-            Instantiate(tilePrefabs[selectedTile], snappedPosition, Quaternion.identity);
+            Instantiate(GetPrefabFromBlockType(selectedBlock), snappedPosition, Quaternion.identity);
         }
         if (Utility.IsButtonHeldOnNonUI(KeyCode.Mouse1))
         {
-            GameObject nearestObject = Utility.FindNearestTaggedObject("Tiles", snappedPosition, 
+            GameObject nearestObject = Utility.FindNearestTaggedObject("Block", snappedPosition, 
                 0.1f);
             if(nearestObject != null)
             {
@@ -41,5 +48,18 @@ public class BlockPlacer : MonoBehaviour
                 Destroy(nearestObject);
             }
         }
+    }
+
+    GameObject GetPrefabFromBlockType(BlockType type)
+    {
+        foreach (BlockTypePrefabPair pair in blockPrefabs)
+        {
+            if (pair.Type == type)
+            {
+                return pair.Prefab;
+            }
+        }
+
+        return null;
     }
 }
