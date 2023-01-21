@@ -41,9 +41,17 @@ public class BlockSmoother : MonoBehaviour
         var parent = transform.parent;
         _parentSpriteRenderer = parent.GetComponent<SpriteRenderer>();
         _parentBlock = parent.GetComponent<Block>();
+        StartCoroutine(DelaySmoother());
     }
 
-    private void LateUpdate()
+    IEnumerator DelaySmoother()
+    {
+        yield return new WaitForEndOfFrame();
+        UpdateSmoother();
+    }
+
+    
+    public void UpdateSmoother()
     {
         _spriteRenderer.color = new Color(0,0,0,0);
         

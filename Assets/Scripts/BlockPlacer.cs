@@ -37,6 +37,15 @@ public class BlockPlacer : MonoBehaviour
                 Destroy(nearestObject);
             }
             Instantiate(GetPrefabFromBlockType(selectedBlock), snappedPosition, Quaternion.identity);
+
+            
+            foreach(GameObject blockObject in Utility.FindNearbyTaggedObjects(snappedPosition, 2, "Block"))
+            {
+                foreach (Transform child in blockObject.transform)
+                {
+                    child.GetComponent<BlockSmoother>().UpdateSmoother();
+                }
+            }
         }
         if (Utility.IsButtonHeldOnNonUI(KeyCode.Mouse1))
         {
@@ -48,10 +57,18 @@ public class BlockPlacer : MonoBehaviour
                 Destroy(nearestObject);
             }
             Instantiate(GetPrefabFromBlockType(0), snappedPosition, Quaternion.identity);
+
+            foreach(GameObject blockObject in Utility.FindNearbyTaggedObjects(snappedPosition, 2, "Block"))
+            {
+                foreach (Transform child in blockObject.transform)
+                {
+                    child.GetComponent<BlockSmoother>().UpdateSmoother();
+                }
+            }
         }
     }
 
-    GameObject GetPrefabFromBlockType(BlockType type)
+    public GameObject GetPrefabFromBlockType(BlockType type)
     {
         foreach (BlockTypePrefabPair pair in blockPrefabs)
         {

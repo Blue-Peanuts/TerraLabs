@@ -217,6 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 561995134}
   - component: {fileID: 561995133}
+  - component: {fileID: 561995135}
   m_Layer: 0
   m_Name: Selector
   m_TagString: Untagged
@@ -236,7 +237,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da8d736a1aaa42638b59f8901b84820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockPrefabs: []
+  blockPrefabs:
+  - Type: 3
+    Prefab: {fileID: 2378205222328355607, guid: 852d59d64d7673a48be2832d12ea9176, type: 3}
+  - Type: 2
+    Prefab: {fileID: 2997294513856364744, guid: 6a6dc2cd33abb4c0db2281fe2a1700d2, type: 3}
+  - Type: 1
+    Prefab: {fileID: 6683183256424710236, guid: ff190348e9ed440cebe00b12e686ce86, type: 3}
+  - Type: 0
+    Prefab: {fileID: 7433160831067342959, guid: 5d6358c4e8ffe427b81d348717a5efe4, type: 3}
   selectedBlock: 0
 --- !u!4 &561995134
 Transform:
@@ -253,3 +262,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &561995135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561995132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ecdf7f63f9c4067a73b1a4bd640b76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

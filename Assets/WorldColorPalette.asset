@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8adaafbf9583984a99db87669a8a706, type: 3}
-  m_Name: WorldColorPallet
+  m_Name: WorldColorPalette
   m_EditorClassIdentifier: 
   colors:
   - {r: 0.34509805, g: 0.18431373, b: 0.054901965, a: 1}
@@ -23,3 +23,7 @@ MonoBehaviour:
   - {r: 0.39607847, g: 0.427451, b: 0.2901961, a: 1}
   - {r: 0.25490198, g: 0.28235295, b: 0.20000002, a: 1}
   - {r: 0.20000002, g: 0.2392157, b: 0.16078432, a: 1}
+  - {r: 0.20000002, g: 0.2392157, b: 0.16078432, a: 1}
+  - {r: 0.14901961, g: 0.39215687, b: 0.5568628, a: 1}
+  - {r: 0.30980393, g: 0.56078434, b: 0.7529412, a: 1}
+  - {r: 0.3254902, g: 0.8235294, b: 0.8627451, a: 1}
