@@ -237,13 +237,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockPrefabs:
-  - Type: 1
-    Prefab: {fileID: 2997294513856364744, guid: 6a6dc2cd33abb4c0db2281fe2a1700d2, type: 3}
-  - Type: 0
-    Prefab: {fileID: 6683183256424710236, guid: ff190348e9ed440cebe00b12e686ce86, type: 3}
   - Type: 2
+    Prefab: {fileID: 2997294513856364744, guid: 6a6dc2cd33abb4c0db2281fe2a1700d2, type: 3}
+  - Type: 1
+    Prefab: {fileID: 6683183256424710236, guid: ff190348e9ed440cebe00b12e686ce86, type: 3}
+  - Type: 0
     Prefab: {fileID: 7433160831067342959, guid: 5d6358c4e8ffe427b81d348717a5efe4, type: 3}
-  selectedBlock: 0
+  - Type: 3
+    Prefab: {fileID: 2378205222328355607, guid: 852d59d64d7673a48be2832d12ea9176, type: 3}
+  selectedBlock: 2
 --- !u!4 &522486275
 Transform:
   m_ObjectHideFlags: 0
