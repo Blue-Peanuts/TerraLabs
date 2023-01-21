@@ -37,5 +37,10 @@ public class Energy : MonoBehaviour
             Destroy(target.gameObject);
         }
     }
+
+    public void Give(int drainAmt, Energy target)
+    {
+        target.Drain(drainAmt, this);
+    }
 }
 

@@ -10,7 +10,7 @@ public class JoTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        blob1.Drain(5, blob2);
+        //blob1.Give(5, blob2);
     }
 
     // Update is called once per frame
