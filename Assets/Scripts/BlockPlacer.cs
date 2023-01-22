@@ -20,10 +20,12 @@ public class BlockPlacer : MonoBehaviour
     {
         _camera = Camera.main;
     }
-
+    public void SetBlock(int type)
+    {
+        selectedBlock = (BlockType)type;
+    }
     void Update()
     {
-
         if (Utility.IsButtonHeldOnNonUI(KeyCode.Mouse0))
         {
             Place(selectedBlock);

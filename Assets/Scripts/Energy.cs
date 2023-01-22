@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,14 @@ public class Energy : MonoBehaviour
 {
     public int energyLevel = 70;
     public int maxLevel = 100;
+
+    private void Update()
+    {
+        if (energyLevel == 0 && !GetComponent<Overseer>())
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void Drain(int drainAmt, Energy target)
     {

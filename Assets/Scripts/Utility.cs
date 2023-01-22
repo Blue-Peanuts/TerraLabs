@@ -112,4 +112,18 @@ public class Utility : MonoBehaviour
         return false;
     }
 
+    public static Block GetBlock()
+    {
+        
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); // get world position
+        float xFloored = Mathf.Floor(mousePosition.x);
+        float yFloored = Mathf.Floor(mousePosition.y);
+        Vector3 snappedPosition = new Vector3(xFloored + 0.5f, yFloored + 0.5f, 0);
+        GameObject blockObject = Utility.FindNearestTaggedObject("Block", snappedPosition, 0.1f);
+
+        if (!blockObject)
+            return null;
+        
+        return blockObject.GetComponent<Block>();
+    }
 }

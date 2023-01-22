@@ -21,7 +21,7 @@ public struct Gene
 
     public void Mutate()
     {
-        float delta = Random.Range(-0.1f, 0.1f);
+        float delta = Random.Range(-0.05f, 0.05f);
         _value += Mathf.Clamp(_value + delta, -1, 1);
     }
 

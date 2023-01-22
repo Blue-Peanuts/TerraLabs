@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: -8517907752908225581}
   - component: {fileID: -9011453107324173883}
   - component: {fileID: 4323973452085415555}
+  - component: {fileID: 6554123524392846276}
+  - component: {fileID: 6739255385721192332}
   m_Layer: 0
   m_Name: Giblet
   m_TagString: Giblet
@@ -80,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1000
   m_Sprite: {fileID: -2413806693520163455, guid: bfdf91a58b0408f47b7810241e936e9c, type: 3}
-  m_Color: {r: 0.8679245, g: 0.24973297, b: 0.24973297, a: 1}
+  m_Color: {r: 0.25098038, g: 0.8666667, b: 0.28424498, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -179,6 +181,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b90caab16e6fa4a2f8bd504e6423f433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Least2Born: 90
-  BornConsumption: 40
-  gibletPrefab: {fileID: 4099153890432110125}
+--- !u!114 &6554123524392846276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099153890432110125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765f2e1b839362045b9de83faad17d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6739255385721192332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099153890432110125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40479e699aa9d944bb5ac7b3a269c1e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

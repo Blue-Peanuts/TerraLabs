@@ -23,10 +23,8 @@ public class FocusedGiblet : MonoBehaviour
         }
     }
 
-    public Genetics? GetGenetics()
+    public Genetics GetGenetics()
     {
-        if (focusedGiblet)
-            return focusedGiblet.GetComponent<GibletBlueprint>().genetics;
-        return null;
+        return focusedGiblet.GetComponent<GibletBlueprint>().genetics;
     }
 }
