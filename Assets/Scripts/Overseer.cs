@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class Overseer : MonoBehaviour
@@ -34,6 +35,21 @@ public class Overseer : MonoBehaviour
         
         GameObject food = Instantiate(foodPrefab, spawnPos, Quaternion.identity);
         GetComponent<Energy>().Give(10, food.GetComponent<Energy>());
+    }
+
+    private void Update()
+    {
+        
+
+        if (Input.GetKeyDown(KeyCode.R))
+            SceneManager.LoadScene(0);
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            foreach (var VARIABLE in FindObjectsOfType<GibletBlueprint>())
+            {
+                Destroy(VARIABLE.gameObject);
+            }
+        }
     }
     /*
     public void SpawnRandomGiblet()

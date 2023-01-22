@@ -29,6 +29,6 @@ public class CamMvmt : MonoBehaviour
     private void FixedUpdate()
     {
         
-        transform.position = transform.position + movement * fov * Time.fixedDeltaTime;
+        transform.position = transform.position + movement * fov * Time.fixedUnscaledDeltaTime;
     }
 }
