@@ -28,17 +28,24 @@ public class BlockPlacer : MonoBehaviour
     {
         if (Utility.IsButtonHeldOnNonUI(KeyCode.Mouse0))
         {
-            Place(selectedBlock);
+            Place(_camera.ScreenToWorldPoint(Input.mousePosition), selectedBlock);
+            Place(_camera.ScreenToWorldPoint(Input.mousePosition) + Vector3.up, selectedBlock);
+            Place(_camera.ScreenToWorldPoint(Input.mousePosition) + Vector3.down, selectedBlock);
+            Place(_camera.ScreenToWorldPoint(Input.mousePosition) + Vector3.left, selectedBlock);
+            Place(_camera.ScreenToWorldPoint(Input.mousePosition) + Vector3.right, selectedBlock);
         }
         if (Utility.IsButtonHeldOnNonUI(KeyCode.Mouse1))
         {
-            Place(0);
+            Place(_camera.ScreenToWorldPoint(Input.mousePosition), 0);
+            Place(_camera.ScreenToWorldPoint(Input.mousePosition) + Vector3.up, 0);
+            Place(_camera.ScreenToWorldPoint(Input.mousePosition) + Vector3.down, 0);
+            Place(_camera.ScreenToWorldPoint(Input.mousePosition) + Vector3.left, 0);
+            Place(_camera.ScreenToWorldPoint(Input.mousePosition) + Vector3.right, 0);
         }
     }
 
-    void Place(BlockType blockType)
+    void Place(Vector3 mousePosition, BlockType blockType)
     {
-        Vector3 mousePosition = _camera.ScreenToWorldPoint(Input.mousePosition); // get world position
         float xFloored = Mathf.Floor(mousePosition.x);
         float yFloored = Mathf.Floor(mousePosition.y);
         Vector3 snappedPosition = new Vector3(xFloored + 0.5f, yFloored + 0.5f, 0);

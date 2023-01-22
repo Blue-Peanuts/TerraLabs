@@ -39,12 +39,6 @@ public class Energy : MonoBehaviour
         // Set new energy levels
         target.energyLevel -= realDrain;
         this.energyLevel += realDrain;
-
-        //Destroy if energy is 0
-        if (target.energyLevel == 0 && !GetComponent<Overseer>())
-        {
-            Destroy(target.gameObject);
-        }
     }
 
     public void Give(int drainAmt, Energy target)

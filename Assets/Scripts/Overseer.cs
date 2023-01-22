@@ -1,13 +1,39 @@
 
+using System;
+using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Overseer : MonoBehaviour
 {
     public static Overseer Instance;
     public GameObject gibletPrefab;
+    public GameObject foodPrefab;
     private void Start()
     {
         Instance = this;
+        StartCoroutine(SpawnRoutine());
+    }
+
+    private IEnumerator SpawnRoutine()
+    {
+        while (true)
+        {
+            yield return new WaitForEndOfFrame();
+            SpawnRandomFood();
+        }
+    }
+
+    private void SpawnRandomFood()
+    {
+        if (FindObjectsOfType<FoodDecay>().Length > 250)
+            return;
+        
+        Block[] blocks = FindObjectsOfType<Block>();
+        Vector3 spawnPos = blocks[Random.Range(0, blocks.Length)].transform.position;
+        
+        GameObject food = Instantiate(foodPrefab, spawnPos, Quaternion.identity);
+        GetComponent<Energy>().Give(10, food.GetComponent<Energy>());
     }
     /*
     public void SpawnRandomGiblet()

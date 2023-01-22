@@ -7,13 +7,13 @@ using Random = UnityEngine.Random;
 
 public class GibletAI : MonoBehaviour
 {
-    private const int ViewRange = 4;
+    private const int ViewRange = 5;
 
     private Genetics Genetics => GetComponent<GibletBlueprint>().genetics;
     private Vector3 _wanderDirection;
     private Rigidbody2D _rigidbody2D;
 
-    private float Speed => 1;
+    private float Speed => 2;
 
     private void Awake()
     {
@@ -21,14 +21,15 @@ public class GibletAI : MonoBehaviour
         StartCoroutine(RandomWander());
         StartCoroutine(Bite());
         StartCoroutine(Exhaust());
+        StartCoroutine(ChangeTarget());
     }
 
     IEnumerator Exhaust()
     {
         while (true)
         {
-            GetComponent<Energy>().Give(1, Overseer.Instance.GetComponent<Energy>());
-            yield return new WaitForSeconds(1);
+            GetComponent<Energy>().Give((int)(2 * (2f - AdaptMul())), Overseer.Instance.GetComponent<Energy>());
+            yield return new WaitForSeconds(2);
         }
     }
     IEnumerator RandomWander()
@@ -37,7 +38,17 @@ public class GibletAI : MonoBehaviour
         {
             _wanderDirection += (Vector3)Random.insideUnitCircle * 0.5f;
             _wanderDirection = _wanderDirection.normalized;
-            yield return new WaitForSeconds(Random.Range(0f, 2f));
+            yield return new WaitForSeconds(Random.Range(0f, 3));
+        }
+    }
+
+    IEnumerator ChangeTarget()
+    {
+        
+        while (true)
+        {
+            _rigidbody2D.velocity = DecideDirection() * (Speed * AdaptMul()) + _wanderDirection * 0.1f;
+            yield return new WaitForSeconds(Random.Range(0f, 0.1f));
         }
     }
     IEnumerator Bite()
@@ -58,7 +69,10 @@ public class GibletAI : MonoBehaviour
 
                 if (colorDelta > SpeciesColorDelta)
                 {
-                    GetComponent<Energy>().Drain((int)Mathf.Max(0, 10 * GetComponent<GibletBlueprint>().genetics.aggressiveness.Value + 2), gib.GetComponent<Energy>());
+                    GetComponent<Energy>().Drain((int)Mathf.Max(0, 3 * GetComponent<GibletBlueprint>().genetics.aggressiveness.Value + 2), gib.GetComponent<Energy>());
+                    
+                    if(gib)
+                        Overseer.Instance.GetComponent<Energy>().Drain((int)Mathf.Max(0, GetComponent<GibletBlueprint>().genetics.aggressiveness.Value + 1), gib.GetComponent<Energy>());
                     break;
                 }
             }
@@ -67,11 +81,34 @@ public class GibletAI : MonoBehaviour
         }
     }
 
-    private const float SpeciesColorDelta = 0.3f;
+    private const float SpeciesColorDelta = 0.15f;
 
+    private float AdaptMul()
+    {
+        GameObject nearestBlock = Utility.FindNearestTaggedObject("Block", transform.position, 1);
+        if (nearestBlock)
+        {
+            float adaptMul = 1;
+            float waterAdapt = (1 - Genetics.adaptability.Value) / 2;
+            float groundAdapt = (1 - Mathf.Abs(Genetics.adaptability.Value));
+            float hillAdapt = (Genetics.adaptability.Value + 1) / 2;
+            BlockType blockType = nearestBlock.GetComponent<Block>().Type;
+            if (blockType == BlockType.Plains)
+                adaptMul = (groundAdapt);
+            if (blockType == BlockType.Water)
+                adaptMul = (waterAdapt);
+            if (blockType == BlockType.Hill || blockType == BlockType.Bush)
+                adaptMul = (hillAdapt);
+            return adaptMul * adaptMul * adaptMul;
+        }
+
+        return 1;
+    }
+    
     private void FixedUpdate()
     {
-        _rigidbody2D.velocity = DecideDirection() * Speed + _wanderDirection * 0.25f;
+        GetComponent<Rigidbody2D>().rotation = Mathf.Rad2Deg * Mathf.Atan2(GetComponent<Rigidbody2D>().velocity.y, GetComponent<Rigidbody2D>().velocity.x) - 90;
+
     }
     Vector3 DecideDirection()
     {
@@ -91,15 +128,21 @@ public class GibletAI : MonoBehaviour
             if(colorDelta > SpeciesColorDelta)
                 enemies.Add(gib);
         }
-
-        foreach (var obj in foods)
-        {
-            finalDirection += ((ViewRange - GetWeightedDistance(obj)) * ((obj.transform.position - transform.position).normalized) * (-(Genetics.aggressiveness.Value - 0.3f)/1.3f));
-        }
-        foreach (var obj in enemies)
-        {
-            finalDirection += ((ViewRange - GetWeightedDistance(obj)) * ((obj.transform.position - transform.position).normalized) * (Genetics.aggressiveness.Value + 0.1f)/1.3f);
-        }
+        
+        if((Genetics.aggressiveness.Value < 0.3f))
+            foreach (var obj in foods)
+            {
+                Vector3 temp = ((ViewRange - GetWeightedDistance(obj)) * ((obj.transform.position - transform.position).normalized) * (-(Genetics.aggressiveness.Value - 0.3f)/1.3f));
+                if (finalDirection.magnitude < temp.magnitude)
+                    finalDirection = temp;
+            }
+        //if((Genetics.aggressiveness.Value > -0.1f))
+            foreach (var obj in enemies)
+            {
+                Vector3 temp = ((ViewRange - GetWeightedDistance(obj)) * ((obj.transform.position - transform.position).normalized) * (Genetics.aggressiveness.Value + 0.1f)/1.3f);
+                if (finalDirection.magnitude < temp.magnitude)
+                    finalDirection = temp;
+            }
 
         return finalDirection.magnitude > 1 ? finalDirection.normalized : finalDirection;
     }
@@ -122,10 +165,10 @@ public class GibletAI : MonoBehaviour
                 weightedDistance += (1f - groundAdapt);
             if (blockType == BlockType.Water)
                 weightedDistance += (1f - waterAdapt);
-            if (blockType == BlockType.Hill)
+            if (blockType == BlockType.Hill || blockType == BlockType.Bush)
                 weightedDistance += (1f - hillAdapt);
         }
-        return weightedDistance / Utility.GetTaggedGameObjectsWithinRaycast2D("Block",gameObject, obj).Count * Vector3.Distance(obj.transform.position, transform.position);
+        return weightedDistance / Utility.GetTaggedGameObjectsWithinRaycast2D("Block",gameObject, obj).Count * Vector3.Distance(obj.transform.position, transform.position) +  Vector3.Distance(obj.transform.position, transform.position) * 0.1f;
     }
 
     
