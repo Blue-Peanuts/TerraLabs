@@ -1,15 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class BitsConsumption : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
     {
-        Energy energy = gameObject.GetComponent<Energy>();
-        if (collision.gameObject.CompareTag("Giblet"))
+        GameObject g = Utility.FindNearestTaggedObject("Giblet", transform.position, 0.1f);
+        if (g)
         {
-            energy.Give(collision.gameObject.GetComponent<Energy>().energyLevel, collision.gameObject.GetComponent<Energy>());
+            gameObject.GetComponent<Energy>().Give(GetComponent<Energy>().energyLevel, g.GetComponent<Energy>());
         }
     }
 }

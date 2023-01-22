@@ -89,7 +89,7 @@ public class BlockSmoother : MonoBehaviour
     {
         if(GetAdjacentBlock(direction))
             return _parentSpriteRenderer.sortingOrder - GetAdjacentBlock(direction).GetComponent<SpriteRenderer>().sortingOrder;
-        return 1;
+        return 0;
     }
 
     private Block GetAdjacentBlock(Vector2 direction)

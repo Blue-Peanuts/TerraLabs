@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class RandomNameGenerator : MonoBehaviour
 {
-    public string[] WaterPrefixes = {"Aqua", "Hydro", "Fluvi", "Mari", "Ombro" };
-    public string[] LandPrefixes = {"Pedo", "Litho", "Geo", "Terra", "Topo"};
-    public string[] AirPrefixes = {"Aero", "Ptero", "Ornitho", "Anemo", "Atmo"};
-    string[] vowels = {"a", "e", "i", "o", "u"};
-    string[] consonants = { "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z" };
+    static string[] WaterPrefixes = {"Aqua", "Hydro", "Fluvi", "Mari", "Ombro" };
+    static  string[] LandPrefixes = {"Pedo", "Litho", "Geo", "Terra", "Topo"};
+    static  string[] AirPrefixes = {"Aero", "Ptero", "Ornitho", "Anemo", "Atmo"};
+    static string[] vowels = {"a", "e", "i", "o", "u"};
+    static string[] consonants = { "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z" };
 
     /*void Start()
     {
@@ -16,17 +16,17 @@ public class RandomNameGenerator : MonoBehaviour
         Debug.Log(NameGenerator(0));
         Debug.Log(NameGenerator(1));
     }*/
-    string NameGenerator(float Adaptation)
+    public static string NameGenerator(float adaptation)
     {
-        string _name = "";
+        string name = "";
         int num = Random.Range(0, 5);
-        if (Adaptation < -0.3)
+        if (adaptation < -0.3)
         {
-            _name = WaterPrefixes[num];
-        }else if(Adaptation <= 0.3){
-            _name = LandPrefixes[num];
+            name = WaterPrefixes[num];
+        }else if(adaptation <= 0.3){
+            name = LandPrefixes[num];
         }else{
-            _name = AirPrefixes[num];
+            name = AirPrefixes[num];
         }
         int nameLength = Random.Range(1, 4);
         for(int i=1; i<=nameLength; ++i)
@@ -34,8 +34,8 @@ public class RandomNameGenerator : MonoBehaviour
             int consonant = Random.Range(0, 21);
             int vowel = Random.Range(0, 5);
             string temp = (string)consonants[consonant] + (string)vowels[vowel];
-            _name += temp;
+            name += temp;
         }
-        return _name;
+        return name;
     }
 }

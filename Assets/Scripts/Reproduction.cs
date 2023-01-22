@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Reproduction : MonoBehaviour
 {
-    public int Least2Born = 90;
-    public int BornConsumption = 40;
+    int Least2Born = 90;
+    int BornConsumption = 40;
     public GameObject gibletPrefab;
-    public GameObject eggPrefab;
     private Energy _energy;
     //public float MaxAllowedColorDistinction = 0.8f;
     //public float MaxAllowedGeneticsDistinction = 0.5f;
@@ -15,6 +14,7 @@ public class Reproduction : MonoBehaviour
     private void Awake()
     {
         _energy = GetComponent<Energy>();
+        GameObject egg = Instantiate(gibletPrefab, transform.position, Quaternion.identity);
     }
 
     void Update()
@@ -23,7 +23,7 @@ public class Reproduction : MonoBehaviour
         float yFloored = Mathf.Floor(transform.position.y);
         if (_energy.energyLevel >= Least2Born) //
         {
-            LayEgg();
+            GiveBirth();
         }
         //if () { //detectes whether there are eggs nearby
 
@@ -38,14 +38,14 @@ public class Reproduction : MonoBehaviour
         //}
     }
 
-    void LayEgg()
+    void GiveBirth()
     {
         Genetics Genetics = gibletPrefab.GetComponent<GibletBlueprint>().genetics;
         Genetics.Mutate();
 
-        GameObject egg = Instantiate(eggPrefab, transform.position, Quaternion.identity);
-        _energy.Give(BornConsumption, egg.GetComponent<Energy>());
-        egg.GetComponent<GibletBlueprint>().genetics = Genetics;
+        //GameObject egg = Instantiate(gibletPrefab, transform.position, Quaternion.identity);
+        //_energy.Give(BornConsumption, egg.GetComponent<Energy>());
+        //egg.GetComponent<GibletBlueprint>().genetics = Genetics;
     }
 
     void Fertilize()

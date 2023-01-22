@@ -19,7 +19,7 @@ public class TMPtext : MonoBehaviour
         if (focusedGiblet == null)
             return;
         Genetics genetics = (Genetics)focusedGiblet.GetGenetics();
-        description.text = "ADAPTABILITY:" + genetics.Adaptability;
+        description.text = "ADAPTABILITY:" + genetics.adaptability;
         Debug.Log("bruh");
     }
 }

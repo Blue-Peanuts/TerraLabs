@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public struct Gene
 {
     private float _value;
@@ -10,6 +11,11 @@ public struct Gene
         get
         {
             return _value;
+        }
+        set
+        {
+            _value = value;
+            _value = Mathf.Clamp(_value, -1, 1);
         }
     }
 

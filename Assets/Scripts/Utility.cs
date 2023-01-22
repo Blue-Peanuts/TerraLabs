@@ -6,6 +6,34 @@ using UnityEngine.EventSystems;
 
 public class Utility : MonoBehaviour
 {
+    public static List<GameObject> GetTaggedGameObjectsWithinRaycast2D(string tag, GameObject startObject, GameObject endObject)
+    {
+        // Create a list to store the tagged GameObjects that are within the raycast
+        List<GameObject> objectsWithinRaycast = new List<GameObject>();
+
+        // Get the starting position and ending position of the raycast
+        Vector2 startPos = startObject.transform.position;
+        Vector2 endPos = endObject.transform.position;
+
+        // Perform the 2D raycast
+        RaycastHit2D[] hits = Physics2D.RaycastAll(startPos, endPos - startPos, Vector3.Distance(endPos, startPos));
+
+        // Iterate through the hits to find the tagged GameObjects that are within the raycast
+        for (int i = 0; i < hits.Length; i++)
+        {
+            RaycastHit2D hit = hits[i];
+            GameObject hitObject = hit.collider.gameObject;
+
+            if (hitObject.CompareTag(tag))
+            {
+                objectsWithinRaycast.Add(hitObject);
+            }
+        }
+
+        // Return the list of tagged GameObjects that are within the raycast
+        return objectsWithinRaycast;
+    }
+    
     public static GameObject FindNearestTaggedObject(string tag, Vector2 position, float maxDistance)
     {
 

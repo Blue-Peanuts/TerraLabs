@@ -32,7 +32,7 @@ public class Energy : MonoBehaviour
         this.energyLevel += realDrain;
 
         //Destroy if energy is 0
-        if (target.energyLevel == 0)
+        if (target.energyLevel == 0 && !GetComponent<Overseer>())
         {
             Destroy(target.gameObject);
         }

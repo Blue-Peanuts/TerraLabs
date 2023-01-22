@@ -2,21 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public struct Genetics
 {
-    public readonly Gene redColor;
-    public readonly Gene greenColor;
-    public readonly Gene blueColor;
-    public readonly Gene Adaptability;
-    public readonly Gene Aggressiveness;
+    public string species;
+    public Gene redColor;
+    public Gene greenColor;
+    public Gene blueColor;
+    public Gene adaptability;
+    public Gene aggressiveness;
 
     public void Randomize()
     {
         redColor.Randomize();
         greenColor.Randomize();
         blueColor.Randomize();
-        Adaptability.Randomize();
-        Aggressiveness.Randomize();
+        aggressiveness.Randomize();
+        adaptability.Randomize();
+        species = RandomNameGenerator.NameGenerator(adaptability.Value);
     }
 
     public void Mutate()
@@ -24,7 +27,7 @@ public struct Genetics
         redColor.Mutate();
         greenColor.Mutate();
         blueColor.Mutate();
-        Adaptability.Mutate();
-        Aggressiveness.Mutate();
+        adaptability.Mutate();
+        aggressiveness.Mutate();
     }
 }

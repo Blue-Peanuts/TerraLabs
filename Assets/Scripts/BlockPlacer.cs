@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class BlockPlacer : MonoBehaviour
@@ -22,48 +23,40 @@ public class BlockPlacer : MonoBehaviour
 
     void Update()
     {
+
+        if (Utility.IsButtonHeldOnNonUI(KeyCode.Mouse0))
+        {
+            Place(selectedBlock);
+        }
+        if (Utility.IsButtonHeldOnNonUI(KeyCode.Mouse1))
+        {
+            Place(0);
+        }
+    }
+
+    void Place(BlockType blockType)
+    {
         Vector3 mousePosition = _camera.ScreenToWorldPoint(Input.mousePosition); // get world position
         float xFloored = Mathf.Floor(mousePosition.x);
         float yFloored = Mathf.Floor(mousePosition.y);
         Vector3 snappedPosition = new Vector3(xFloored + 0.5f, yFloored + 0.5f, 0);
-
-        if (Utility.IsButtonHeldOnNonUI(KeyCode.Mouse0))
+        GameObject nearestObject = Utility.FindNearestTaggedObject("Block", snappedPosition,
+            
+            0.1f);
+        if(!nearestObject)
         {
-            GameObject nearestObject = Utility.FindNearestTaggedObject("Block", snappedPosition, 
-                0.1f);
-            if(nearestObject != null)
-            {
-                // destroy overlapping
-                Destroy(nearestObject);
-            }
-            Instantiate(GetPrefabFromBlockType(selectedBlock), snappedPosition, Quaternion.identity);
+            return;
+        }
+        Destroy(nearestObject);
+        Instantiate(GetPrefabFromBlockType(blockType), snappedPosition, Quaternion.identity);
 
             
-            foreach(GameObject blockObject in Utility.FindNearbyTaggedObjects(snappedPosition, 2, "Block"))
-            {
-                foreach (Transform child in blockObject.transform)
-                {
-                    child.GetComponent<BlockSmoother>().UpdateSmoother();
-                }
-            }
-        }
-        if (Utility.IsButtonHeldOnNonUI(KeyCode.Mouse1))
+        foreach(GameObject blockObject in Utility.FindNearbyTaggedObjects(snappedPosition, 
+                    2, "Block"))
         {
-            GameObject nearestObject = Utility.FindNearestTaggedObject("Block", snappedPosition, 
-                0.1f);
-            if(nearestObject != null)
+            foreach (Transform child in blockObject.transform)
             {
-                // destroy overlapping
-                Destroy(nearestObject);
-            }
-            Instantiate(GetPrefabFromBlockType(0), snappedPosition, Quaternion.identity);
-
-            foreach(GameObject blockObject in Utility.FindNearbyTaggedObjects(snappedPosition, 2, "Block"))
-            {
-                foreach (Transform child in blockObject.transform)
-                {
-                    child.GetComponent<BlockSmoother>().UpdateSmoother();
-                }
+                child.GetComponent<BlockSmoother>().UpdateSmoother();
             }
         }
     }

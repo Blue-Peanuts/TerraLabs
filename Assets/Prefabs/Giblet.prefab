@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 4099153890432110121}
   - component: {fileID: -7020767585546266309}
   - component: {fileID: -8517907752908225581}
+  - component: {fileID: -9011453107324173883}
+  - component: {fileID: 4323973452085415555}
   m_Layer: 0
   m_Name: Giblet
   m_TagString: Giblet
@@ -30,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 4099153890432110125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1000
   m_Sprite: {fileID: -2413806693520163455, guid: bfdf91a58b0408f47b7810241e936e9c, type: 3}
   m_Color: {r: 0.8679245, g: 0.24973297, b: 0.24973297, a: 1}
   m_FlipX: 0
@@ -137,6 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c952d22f6f6b78943a8af72d824fbc9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  genetics:
+    species: 
 --- !u!114 &-8517907752908225581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,5 +153,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c736d4481b57fb64cb97fed302b0a57f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyLevel: 100
+  energyLevel: 0
   maxLevel: 100
+--- !u!114 &-9011453107324173883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099153890432110125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d23d9e414165daa42865f1c43680f465, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4323973452085415555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099153890432110125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b90caab16e6fa4a2f8bd504e6423f433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Least2Born: 90
+  BornConsumption: 40
+  gibletPrefab: {fileID: 4099153890432110125}
